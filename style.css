@@ -1,0 +1,206 @@
+@font-face {
+  font-family: kanit-bold;
+  src: url(./assets/fonts/kanit-bold.woff);
+}
+
+@font-face {
+  font-family: kanit-semibold;
+  src: url(./assets/fonts/kanit-semibold.woff);
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+  color: white;
+  font-family: kanit-semibold;
+  height: 100vh;
+  overflow: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+header {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  padding: 25px 10px;
+  transform: translateY(-150px);
+  animation: headerAnim 1s ease-in-out forwards;
+  animation-delay: 0.7s;
+}
+
+@keyframes headerAnim {
+  from {
+    transform: translateY(-150px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+header nav a {
+  margin-left: 10px;
+}
+
+header .icons span {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+header .logo {
+  line-height: 1.1;
+  transform: translateX(-70px);
+}
+
+header .logo span:first-child {
+  font-size: 2.2em;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: kanit-bold;
+  font-size: 2.3vw;
+  letter-spacing: 0.2rem;
+  margin-bottom: 20px;
+}
+.title h1:first-child {
+  opacity: 0;
+  transform: translateY(-55px);
+  letter-spacing: 1rem;
+  animation: TitleOne 1s ease-in-out forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes TitleOne {
+  from {
+    opacity: 0;
+    transform: translateY(-55px);
+    letter-spacing: 1rem;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: 0.2rem;
+  }
+}
+
+.title h1:last-child {
+  color: transparent;
+  -webkit-text-stroke: 0.2rem #fff;
+  opacity: 0;
+  transform: translateY(70px);
+  letter-spacing: 1rem;
+  animation: TitleTwo 1s ease-in-out forwards;
+  animation-delay: 0.7s;
+}
+
+@keyframes TitleTwo {
+  from {
+    opacity: 0;
+    transform: translateY(70px);
+    letter-spacing: 1rem;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: 0.2rem;
+  }
+}
+
+/* Styles pour .main (le conteneur) */
+.main {
+  position: relative;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+  max-height: 80vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.main img {
+  width: 100%;
+  height: 625px;
+  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+  opacity: 0.3;
+  animation: openCurtain 1.5s ease-in-out forwards;
+  z-index: 2;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.main img:first-child {
+  clip-path: polygon(0 75%, 100% 100%, 100% 100%, 0 100%);
+  animation: openCurtainLeft 2s ease-in-out forwards;
+}
+
+.main img:last-child {
+  clip-path: polygon(0 100%, 100% 75%, 100% 100%, 0 100%);
+  animation: openCurtainRight 2s ease-in-out forwards;
+}
+
+@keyframes openCurtain {
+  from {
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+    opacity: 0.3;
+  }
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    opacity: 1;
+  }
+}
+
+@keyframes openCurtainLeft {
+  from {
+    clip-path: polygon(0 75%, 100% 100%, 100% 100%, 0 100%);
+    opacity: 0.3;
+  }
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    opacity: 1;
+  }
+}
+
+@keyframes openCurtainRight {
+  from {
+    clip-path: polygon(0 100%, 100% 75%, 100% 100%, 0 100%);
+    opacity: 0.3;
+  }
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    opacity: 1;
+  }
+}
+
+
+.main img:hover {
+  filter: saturate(10%);
+}
+
+
+/* Styles pour le halo de lumière */
+.halo {
+  position: absolute;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 80%);
+  width: 200px; /* Augmentez la taille */
+  height: 200px; /* Augmentez la taille */
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  opacity: 0.4; /* Augmentez l'opacité */
+  z-index: 1;
+}
